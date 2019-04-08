@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ro" window-icon="images/app.png">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Caută</title>
+    <style>
+
+        #login
+        {
+            position: fixed;
+            left:1*; 
+            top:1*; 
+            right:1*; 
+            bottom:3*;
+            width: auto;
+            height: auto;
+        }
+
+        #login > form
+        {
+            flow:grid(
+                0 1,
+                2 3,
+                4 5,
+                6 7,
+                9 8
+            ); 
+        }
+
+        #login > form > caption
+        {
+            margin-bottom: 8dip;
+            font-size: 18dip;
+        }
+        
+        #login form > label
+        {
+            margin-right: 20dip;
+            margin-bottom: 5dip;
+            display:block; 
+            width:max-content; 
+            text-align:right; 
+            vertical-align: middle;
+        }
+
+        #login form > button
+        {
+            margin-top: 10dip;
+            width: 1*;
+        }
+
+    </style>
+
+    <script type="text/tiscript">
+
+        view.state = View.WINDOW_MAXIMIZED;
+        /* view.windowIcon = "images/app.png"; */
+
+        function self.ready() {
+            this.post( :: view.focusable(#first).state.focus = true );
+          }
+
+          event click $(#exit){
+              /* view.close(); */
+            view.goclose();
+        }
+
+    </script>
+</head>
+<body>
+    <div id="login">
+        <form>
+            <caption>Conectare</caption>
+            <label>Utilizator</label>
+                <input|text(user) tabindex=1>
+            <label>Parolă</label>
+                <input|password(password)> 
+            <label>Bază de date</label>
+                <input|text(service)> 
+            <button|submit>OK</button>
+            <button|button #exit>EXIT</button>
+        </form>
+    </div>
+
+</body>
