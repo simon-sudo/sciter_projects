@@ -79,11 +79,14 @@
 
         function self.ready() {
             this.post( :: view.focusable(#first).state.focus = true );
-          }
+        }
+
+        event click $(#conect){
+            view.goConect(JSON.stringify($(#login).value));
+        }
 
           event click $(#exit){
-              /* view.close(); */
-            view.goclose();
+            view.close();
         }
 
     </script>
@@ -101,7 +104,7 @@
             <label>Bază de date</label>
                 <input|text(service)> 
             <div class="divider"></div>
-            <button|submit>OK</button>
+            <button|submit #conect>OK</button>
             <button|button #exit>EXIT</button>
         </form>
     </div>

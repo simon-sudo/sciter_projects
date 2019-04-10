@@ -121,29 +121,46 @@ cauta
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
-	"syscall"
 
 	"github.com/sciter-sdk/go-sciter"
 	"github.com/sciter-sdk/go-sciter/window"
 )
 
-func main() {
-	w, err := window.New(sciter.DefaultWindowCreateFlag, sciter.DefaultRect)
+type conectare struct {
+	Utilizator string `json:"utilizator"`
+	Parola     string `json:"parola"`
+	Bazadate   string `json:"bazadate"`
+}
+
+var (
+	w *window.Window
+	c conectare
+)
+
+func init() {
+	var err error
+	w, err = window.New(sciter.DefaultWindowCreateFlag, sciter.DefaultRect)
+
 	if err != nil {
 		log.Fatal(err)
 	}
+}
 
+func main() {
 	w.SetResourceArchive(resources)
-	w.LoadFile("this://app/maxi.html")
+	w.LoadFile("this://app/conect.html")
 
-	w.DefineFunction("goclose", goclose)
+	w.DefineFunction("goConect", goConect)
 
 	w.Show()
 	w.Run()
 }
 
-func goclose(vals ...*sciter.Value) *sciter.Value {
-	syscall.Exit(0)
+func goConect(vals ...*sciter.Value) *sciter.Value {
+	json.Unmarshal([]byte(vals[0].String()), &c)
+	fmt.Print(c.Utilizator)
 	return nil
 }
