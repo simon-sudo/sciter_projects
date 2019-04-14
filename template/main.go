@@ -151,7 +151,7 @@ func init() {
 
 func main() {
 	w.SetResourceArchive(resources)
-	w.LoadFile("this://app/conect.html")
+	w.LoadFile("this://app/maxi.html")
 
 	w.DefineFunction("goConect", goConect)
 
